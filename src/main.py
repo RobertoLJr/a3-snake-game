@@ -1,5 +1,7 @@
 from board import Board
 from turtle import Screen, Turtle
+from snake import Snake
+import time
 
 
 FONT = ("Courier", 18, "normal")
@@ -9,7 +11,6 @@ screen = Screen()
 screen.setup(width=800, height=800)
 screen.bgcolor("black")
 screen.title("Snake Game")
-screen.tracer(0)
 
 # Setup Turtle configuration for menu writing
 menu_pen = Turtle(visible=False)
@@ -45,12 +46,32 @@ def show_rules():
 def start_game():
     """Start a new game"""
 
-    # TODO: Implement start_game
     screen.clear()
     screen.bgcolor("black")
 
     board = Board(screen.window_width(), screen.window_height())
-    screen.update()
+    screen.tracer(0)  # Allow for more rapid keyboard response for snake's character
+    snake = Snake()
+    # TODO: Implement food
+    # TODO: Implement scoreboard
+
+    # Setup keyboard binding for snake controls
+    screen.listen()
+    screen.onkey(snake.move_up, "Up")
+    screen.onkey(snake.move_down, "Down")
+    screen.onkey(snake.move_left, "Left")
+    screen.onkey(snake.move_right, "Right")
+
+    # Allow for screen updates and character movement
+    game_is_on = True
+    while game_is_on:
+        screen.update()
+        time.sleep(0.1)
+        snake.move()
+
+        # TODO: Implement collision detection with food
+        # TODO: Implement collision detection with walls
+        # TODO: Implement collision detection with self
 
 
 def quit_game():
