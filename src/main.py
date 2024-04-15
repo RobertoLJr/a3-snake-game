@@ -1,6 +1,7 @@
 from board import Board
 from food import Food
 from turtle import Screen, Turtle
+from scoreboard import Scoreboard
 from snake import Snake
 import time
 
@@ -53,7 +54,7 @@ def start_game():
     board = Board(screen.window_width(), screen.window_height())
     snake = Snake()
     food = Food(screen.window_width(), screen.window_height())
-    # TODO: Implement scoreboard
+    scoreboard = Scoreboard(screen.window_height())
 
     screen.tracer(10)  # Allow for more rapid keyboard response for snake's character
 
