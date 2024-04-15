@@ -1,4 +1,5 @@
 from board import Board
+from food import Food
 from turtle import Screen, Turtle
 from snake import Snake
 import time
@@ -50,10 +51,11 @@ def start_game():
     screen.bgcolor("black")
 
     board = Board(screen.window_width(), screen.window_height())
-    screen.tracer(0)  # Allow for more rapid keyboard response for snake's character
     snake = Snake()
-    # TODO: Implement food
+    food = Food(screen.window_width(), screen.window_height())
     # TODO: Implement scoreboard
+
+    screen.tracer(10)  # Allow for more rapid keyboard response for snake's character
 
     # Setup keyboard binding for snake controls
     screen.listen()
@@ -77,6 +79,11 @@ def start_game():
 def quit_game():
     """End the game by closing the screen."""
 
+    screen.clear()
+    screen.bgcolor("black")
+    menu_pen.goto(0, 0)
+    menu_pen.write("ATÉ LOGO!", align="center", font=FONT)
+    time.sleep(1.5)
     screen.bye()
 
 
